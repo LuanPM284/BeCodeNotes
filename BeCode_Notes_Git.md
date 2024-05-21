@@ -302,7 +302,7 @@ Master branch or main branch\
 Allow us to create features on an isolated environement
 ```bash
 git branch name-branch
-git branch -a` shows all branches, with * on the actual one
+git branch -a shows all branches, with * on the actual one
 git checkout branch_name
 ```
 We can add new files, using status to check and than add and commit\
