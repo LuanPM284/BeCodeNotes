@@ -122,3 +122,13 @@ Once I have the branch I can create a pull request and merge if all is right.
 [x] All done\
 [ ] Took Break\
 [x] human.exe stop working
+
+---
+### self - FEEDBACK
+
+I had some difficulty reproducing earlier results, where all just worked when working by myself and my own repos.
+
+For markdown I had a little experience after a dev told me about it and how he organized his notes in that format, using jupyter notebooks. 
+
+I saw the usefulness of keeping notes written by myself in order to check errors or fix mistakes.:w
+
