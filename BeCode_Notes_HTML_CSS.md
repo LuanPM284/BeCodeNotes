@@ -67,6 +67,8 @@ exe: [Top of the page](<#using-github-pages>)
 
 (HTML => CSS => JS)*Accessibility
 
+> https://dotnetinter.livejournal.com/78240.html
+
 #### Tags Exercice
 
 Edit the texte file: doc-the-chinse-farmer.txt using semantics. Or the different tags so that the texte is divided in blocks that we can later use to add style.
@@ -99,6 +101,49 @@ The different names of the tags:
 - `strong` : represents a strong importance by nesting strong elements, each one increases the strenght
 - `alt` : is an attribute that is present when the image can't be displayed
 - `link`: allows a connection between the current document and external sources
+
+```HMTL
+<!-- basic syntax for HTML 5 now adays -->
+<html>
+    <head>
+        <meta>
+        <title> Title here, for tab text</title>
+    </head>
+    <body>
+        <header>
+            <nav> navigation bar or menu here </nav>
+        </header>
+        <article>
+            <section>stuff here</section>
+            <section>stuff here</section>
+            <section>stuff here</section>
+        </article>
+        <aside> the publicity!!</aside>
+        <footer> contats and stuff I guess</footer>
+    </body>
+</html>
+
+<!-- mini resume -->
+    head
+        title
+    body
+        header
+            nav
+        article
+            section
+            section
+        article
+            section
+            section
+        aside
+        footer
+
+```
+
+![Exemple de page HTML5](exemple_HMTL5.jpg)
+
+![Exemple de code HTML5](exempleSyntax_HTML5.jpg)
+
 #### Html attributes
 
 Attributes can be added inside a tag in order to increase semantics, helping the machine "understand" better the content.
@@ -401,3 +446,210 @@ body {
 ```
 
 ## CSS selectors (part 2) :
+
+Elements to be stylized:
+
+- `class` (`.name-of-class`)
+- `id` (`#name-of-id`)
+
+### Exercises
+
+Back to your html version of the Chinese farmer :
+
+[x] Using only the tag as a selector, italicize all quotations.
+```CSS
+q {
+    /* display: block;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 160%;
+    background-color: lightgray;
+    border-left-style: solid;
+    border-left-color: firebrick;
+    border-left-width: 3px;
+    padding-left: 30px;
+    margin-top: 80px;
+    margin-bottom: 80px; */
+    font-style: italic;
+}
+```
+[x] Identify the quotes of the villagers and the farmer by assigning each a corresponding class.
+```CSS
+class ="villager"
+class ="farmer"
+```
+[x] Change the color of the left edge of the quotes according to the person speaking.
+```CSS
+.villager {
+    border-left-color: blue;
+}
+
+.farmer {
+    border-left-color: greenyellow;
+}
+
+```
+[x] Select using parents and children elements
+```CSS
+p>.farmer {
+    background-color: aqua;
+}
+
+p>.villager {
+    background-color: pink;
+}
+/* here the parent element p and we act on the children nested inside, this case the classes farmer and villager */
+```
+
+### Exercise
+
+Back to your html version of the Chinese farmer :
+
+[x] Select an element of the `header` and gives it a yellow background (use the child selector)
+```CSS
+header article {
+    background-color: beige;
+}
+/* here the parent being the header and article being another element inside so it comes after */
+```
+[x] All other selectors
+`+` and `>`
+[For a complete list](https://www.w3schools.com/cssref/css_selectors.php)
+
+The simplest is one following the other, with a comma this just does both at the same time
+`p, h1{}`
+
+Other common options are `>`:
+`p > h1 {will only change h1 that are inside a p}`\
+This goes from parent>child and only modifies the childs indented on parents
+
+Same idea with spaces `header article{}` will only change articles inside the header
+
+For all elements we use: `* {}`
+
+For the `+`, it selects the first element that appears in the parent:
+`div + p {selects the first p in div}`
+
+For `~` it selects backwards to the parent
+
+
+Select via the attribute `[attribute]`
+There are a few others. To get an idea of what they allow, go read the [W3Schools documentation](https://www.w3schools.com/cssref/css_selectors.php), then play with [CSS Dinner](https://flukeout.github.io/)
+
+### Exercises
+
+Back to your html version of the Chinese farmer :
+
+[x] Italics the text of the quotations
+```CSS
+q {
+    /* display: block;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 160%;
+    background-color: lightgray;
+    border-left-style: solid;
+    border-left-color: firebrick;
+    border-left-width: 3px;
+    padding-left: 30px;
+    margin-top: 80px;
+    margin-bottom: 80px; */
+    font-style: italic;
+}
+```
+[x] Capitalize all instances of the words "good" and "bad".
+```CSS
+.villager {
+    border-left-color: blue;
+    text-transform: capitalize;
+}
+
+.farmer {
+    border-left-color: greenyellow;
+    text-transform: capitalize;
+}
+```
+[x] Put the words "Bad" in red
+```CSS
+.bad {
+    color: red;
+}
+/* multiple classes are separated by a space: class ="villager bad" */
+```
+x[] Put the words "Good" in green
+```CSS
+.good {
+    color: green;
+}
+
+```
+[x] Style the table so that the background color of each row is alternating grey 
+or white
+```CSS
+source: https://www.w3schools.com/css/css_table_style.asp
+tr:nth-child(even) {
+    background-color: gray;
+}
+/* this changes automatic */
+tr:nth-child(odd) {
+    background-color: beige;
+}
+/* this is to choose the odd number cells color*/
+th {
+    background-color: #04AA6D;
+    color: white;
+}
+/* for a header color */
+```
+[x] At the first item in the list (types of people), play with background-image and padding-right to make the image appear good
+```CSS
+/* with gepeto help sice I had been stuck for quite sometime */
+/* the important part is that I understand how it was made*/
+/* if I comment the ul style I end up with the original points for the list */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li.good_image {
+    background-image: url('bien.png');
+    /* Replace with your image path */
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    /* Adjust size as needed */
+    background-position: right center;
+    /* Adjust position as needed */
+    padding-right: 30px;
+    /* Add padding to make space for the image */
+}
+```
+x[x] At the second item of the list (types of people), play with background-image and padding-right to make the image appear wrong
+```CSS
+li.bad_image {
+    background-image: url(mal.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+    padding-right: 30px;
+}
+```
+[x] At the third item of the list (types of people), play with background-image and padding-right to make the image appear chat
+```CSS
+li.cat_image {
+    background-image: url(chat.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+    padding-right: 30px;
+}
+```
+[x] Put the first paragraph in bold
+```CSS
+li.bad_image {
+    background-image: url(mal.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+    padding-right: 30px;
+}
+```

@@ -434,3 +434,114 @@ push to origin
 
 on github, the others page, make pull request
 this will allow the owner to see your additions but not merge since that is only available to the original creator
+
+### Extra from Discord, just in case
+
+# **Apprendre à utiliser les commandes Git correctement.**
+*Git est un système de contrôle de version distribué, ce qui signifie qu'il permet de suivre les modifications apportées à vos fichiers de projet et de collaborer efficacement avec d'autres personnes. Il est couramment utilisé par les développeurs de logiciels, mais il peut être utile pour tout type de projet impliquant des fichiers texte.*
+
+En quelques points Git sert exactement à : 
+- **Suivi des modifications**: Git enregistre un historique complet de toutes les modifications apportées à vos fichiers, vous permettant de revenir à des versions précédentes en cas de besoin.
+
+- **Collaboration**: Plusieurs personnes peuvent travailler sur le même projet en même temps, et Git permet de fusionner leurs modifications sans conflit.
+
+- **Non centralisé**: Git est un système distribué, ce qui signifie qu'il n'y a pas de serveur centralisé. Chaque utilisateur a une copie complète de l'historique du dépôt, ce qui permet de travailler hors ligne et de partager facilement des projets.
+
+- **Gratuit et open source**: Git est un logiciel libre et open source, ce qui signifie qu'il est gratuit à utiliser et que son code source est disponible à tous.
+
+
+### **Voici les commandes à taper sur le terminal lors de la création d'un repo.**
+
+1. **Tout d'abord, commencer par initialiser un dépôt Git local éxécuter la commande**
+
+        git init
+
+2. **Structurer vos dossiers, votre espace de travail, crée déjà vos dossiers et vos fichiers..**
+
+3. **Une fois celà fait, ajoutez et commettez tout avec les commandes suivantes**
+
+         git add .
+         git commit -m "Message à taper"
+
+4. **Associer votre dépôt local au dépôt Github distant** 
+
+        git remote add origin https://github.com/<nom-d'utilisateur>/<nom-du-repo>.git
+
+5. **Créez votre branche dev, rejoignez la branche et envoyez les fichiers local**
+
+        git branch dev
+        git checkout dev
+        git push -u origin dev
+
+
+### **Voici les commandes à taper sur le terminal pour rejoindre un projet**
+
+1. **Naviguez sur le terminal ou vous souhaitez cloner le projet**
+
+        ls (pour savoir ou vous êtes sur l'explorateur)
+        cd .. (pour revenir en arrière)
+        cd "nom du chemin"
+
+2. **Une fois votre destination trouver, cloner le projet**
+
+        git clone "url du repo github"
+
+3. **Ensuite pour mettre à jour votre dépôt local sans fusionner vos modifications local** 
+
+        git fetch "url du repo github"
+
+![](https://i.ibb.co/zJPjvC0/image.webp)
+
+Maintenant que votre repo est crée et est à jour, je vais donner quelques commandes que vous allez utilisé au quotidien.
+
+
+
+1. ```git init```
+Initialise un nouveau dépôt Git dans le répertoire actuel.
+
+2. ```git add```
+Ajoute les fichiers modifiés ou nouveaux à la zone de staging pour le prochain commit.
+
+3. ```git commit```
+Prend un snapshot des fichiers ajoutés dans la zone de staging et crée un commit avec un message descriptif.
+
+4. ```git status```
+Affiche l'état du dépôt Git, indiquant les fichiers modifiés, non ajoutés et mis en scène.
+
+5. ```git log```
+Affiche l'historique des commits du dépôt, avec des informations sur chaque commit (auteur, date, message).
+
+6. ```git branch```
+Liste les branches locales existantes dans le dépôt.
+Permet de créer, changer et supprimer des branches.
+
+7. ```git checkout```
+Passe à une branche spécifique dans le dépôt.
+Permet également de restaurer des fichiers à partir d'un commit spécifique.
+
+8. ```git merge```
+Fusionne les modifications d'une branche dans une autre.
+
+9. ```git push```
+Envoie les modifications locales vers le dépôt GitHub distant.
+Permet de mettre à jour le dépôt distant avec vos derniers commits.
+
+10. ```git pull```
+Récupère les modifications du dépôt GitHub distant et les fusionne avec votre branche locale.
+
+11. ```git clone```
+Crée une copie locale d'un dépôt Git distant.
+
+12. ```git remote```
+Gère les URL des dépôts Git distants.
+
+13. ```git fetch```
+Télécharge les informations sur les branches et les commits du dépôt GitHub distant, sans les fusionner avec votre branche locale.
+
+14. ```git rebase```
+Ré-écrit l'historique des commits local pour le rendre plus linéaire.
+
+15. ```git tag```
+Crée, gère et supprime des tags dans le dépôt.
+
+
