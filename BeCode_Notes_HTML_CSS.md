@@ -4,6 +4,17 @@
 <!-- in order to create my own developer landing page -->
 > Source: https://dev.to/flexdinesh/create-your-developer-landing-page-with-github-pages---42jk
 
+Resources: 
+- https://www.w3.org/ 
+    - https://validator.w3.org/#validate_by_uri
+- https://pagespeed.web.dev/?hl=fr
+- google lighthouse
+- https://docs.google.com/presentation/d/1ZncEV7bkCz3BcAS4gZYSneXz1jJB_PC0IiD-CMe2VRU/edit#slide=id.g2df84913ed4_0_72
+
+Bonus:
+
+- Attention au dimension d'images, **bonne taille** pour mon site, car images sont lourdes pour le telechargement. Images déja redimensionnée avant le site c'est l'idéale. (photoshop, gimp, online)
+
 ### How to do it with a github account
 
 ```
@@ -653,3 +664,138 @@ li.bad_image {
     padding-right: 30px;
 }
 ```
+## Concept 3: CSS positioning
+### Understanding the Browser Rendering flow
+
+Each html block has a "display" property which is either: `display: inline | inline-block | block` and is displayed according to its order of appearance in the html file.
+This is called the **natural positioning **  or more simply the flow.
+
+![Display explained](exemple_inline_block.png)
+
+**The flexbox model**
+
+Flexbox is the commonly-used name for the CSS Flexible Box Layout Module, a layout model for displaying items in a single dimension — as a row or as a column.
+
+In the specification, Flexbox is described as a layout model for user interface design. The key feature of Flexbox is the fact that items in a flex layout can grow and shrink. Space can be assigned to the items themselves, or distributed between or around the items.
+
+Flexbox also enables alignment of items on the main or cross axis, thus providing a high level of control over the size and alignment of a group of items.
+
+[The flexbox model summary (FR)](https://developer.mozilla.org/fr/docs/Learn/CSS/CSS_layout/Flexbox)\
+[The properties explained (FR)](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox)
+
+***Most common flex commands***
+
+Source: https://flexboxfroggy.com/
+
+*Always start with: `display:flex;`*
+- `justify-content`: creates an imaginary line fills all horizon
+    - `flex-start`: Items align to the left side of the container.
+    - `flex-end`: Items align to the right side of the container.
+    - `center`: Items align at the center of the container.
+    - `space-between`: Items display with equal spacing between them.
+    - `space-around`: Items display with equal spacing around them.
+
+- `align-items` : aligns items vertically
+
+    - `flex-start`: Items align to the top of the container.
+    - `flex-end`: Items align to the bottom of the container.
+    - `center`: Items align at the vertical center of the container.
+    - `baseline`: Items display at the baseline of the container.
+    - `stretch`: Items are stretched to fit the container.
+
+- `flex-direction` : defines the direction items are placed in the container
+
+    - `row`: Items are placed the same as the text direction.
+    - `row-reverse`: Items are placed opposite to the text direction.
+    - `column`: Items are placed top to bottom.
+    - `column-reverse`: Items are placed bottom to top.
+
+- `order`:property of individual items. 
+
+    - the element has an individual order number of 0, we can move up and down 1,2 -1,-2
+
+-`align-self`: property of individual items. 
+    - This property accepts the same values as align-items and its value for the specific item.
+
+- `flex-wrap`: property, which accepts the following values:
+
+    - `nowrap`: Every item is fit to a single line.
+    - `wrap`: Items wrap around to additional lines.
+    - `wrap-reverse`: Items wrap around to additional lines in reverse.
+
+- `flex-direction` and `flex-wrap` together `flex-flow` combine them.\
+    This shorthand property accepts the value of the two properties separated by a space.
+    - For example, you can use `flex-flow`: `row wrap` to set rows and wrap them. Or `column wrap`
+    
+- `align-content` to set how multiple lines are spaced apart from each other, **only available once I have `wrap`**.
+
+    - `flex-start`: Lines are packed at the top of the container.
+    - `flex-end`: Lines are packed at the bottom of the container.
+    - `center`: Lines are packed at the vertical center of the container.
+    - `space-between`: Lines display with equal spacing between them.
+    - `space-around`: Lines display with equal spacing around them.
+    - `stretch`: Lines are stretched to fit the container.
+
+- extra:
+    - `gap`; adds gaps in between containers
+    - on an item element:
+        - `flex-grow`: it fills up the available space; set to 1 it will be distributed equaly
+        - `flex-shrink`: 0 to refuse to shrink, over 1 and it will be first to shrink when page changes size
+        - `flex-basis`: set the item, element to new dimensions, 0 being shrink to max
+    - all of these combine on `flex`: 1 will fill up space and set other items automaticly
+This can be confusing, but align-content determines the spacing between lines, while align-items determines how the items as a whole are aligned within the container. When there is only one line, align-content has no effect.
+
+#### Exercise :
+
+Back to your html version of the Chinese farmer :
+
+[x] Make the text run around the images, using the `flexbox model` property on the images (adjusted with `justify-content` to distance the text from the image).
+flexbox
+```CSS
+.first_part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* will only fill space that it has, if no space then no changes */
+}
+```
+
+**Breaking the flow**
+
+The flow is the default behavior. You may need an element to exit the position flow.
+
+`position : static | relative | absolute | fixed ;`
+
+The `position` property allows you to position an element anywhere (via the `top` and `left` properties), from the coordinates of its first parent in `position: relative` or `static`. Experiment via this Pen.
+
+#### Exercises :
+
+[Put the notification block in the bottom right corner of the browser, even if you scroll](https://codepen.io/pixeline/pen/dWqMxe)
+```CSS
+.notification{
+  position:sticky;
+  top:95%;
+  left:95%;
+}
+/* a better option */
+.notification {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+```
+**Going further**
+
+More information on CSS positioning: http://learnlayout.com
+
+**Extra**
+
+#### Learning Grid
+source: https://youtu.be/EiNiSFIPIQE?si=AVDyc45lc5WTXS12
+fun tool: https://cssgridgarden.com/
+
+## 3. Web fonts
+
+## 4. Useful tools
+
+## 5. Exercises to finish this sprint
