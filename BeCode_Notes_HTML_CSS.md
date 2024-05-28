@@ -70,15 +70,31 @@ add/commit/push
 
 ---
 create internal links
-[ clickable] followed by (# the tag that is created automaticly when a heading is created)\
-exe: [Top of the page](<#using-github-pages>)
+[ clickable] followed by (# the tag that is created automaticly when a heading is created)
+
+### Index
+- [Some common used elements](#some-common-used-elements)  
+- [1 Html attributes](#html-attributes) 
+    - [Alt Exercices](#alt-exercice) 
+- [2 CSS](#css) 
+    - [Concept 1 CSS Selectors](#concept-1-css-selectors) 
+    - [Concept 1 CSS Selectors part 2](#css-selectors-part-2) 
+    - [Concept 2 CSS Block Model](#concept-2-block-model) 
+    - [Concept 3 Positionning](#concept-3-css-positioning) 
+- [Extra: Learning Grid](#learning-grid)
+- [3 Web Fonts](#3-web-fonts)
+- [4 Useful tools](#4-useful-tools)
+- [5 Exercices to finish module](#5-exercises-to-finish-this-sprint)
+- [Other usefull things](#other-usefull-things)
+    - [Bro code](#bro-code-videos-on-html-and-css-to-help-with-general-flow-of-things)
+
 
 ---
 ### Progressive enhancement
 
 (HTML => CSS => JS)*Accessibility
 
-> https://dotnetinter.livejournal.com/78240.html
+- https://dotnetinter.livejournal.com/78240.html
 
 #### Tags Exercice
 
@@ -140,12 +156,12 @@ The different names of the tags:
     body
         header
             nav
-        article
-            section
-            section
-        article
-            section
-            section
+        section
+            article
+            article
+        section
+            article
+            article
         aside
         footer
 
@@ -155,6 +171,7 @@ The different names of the tags:
 
 ![Exemple de code HTML5](exempleSyntax_HTML5.jpg)
 
+**[Back to Index](#index)**
 #### Html attributes
 
 Attributes can be added inside a tag in order to increase semantics, helping the machine "understand" better the content.
@@ -177,6 +194,7 @@ Here is a one-line summary of the syntax of tags, attributes and values:
 ```HTML
 <tag attribute="value">content</tag>
 ```
+**[Back to Index](#index)**
 #### Alt exercice
 
 for: Make sure that when you click on the links, the page opens in a new browser tab.
@@ -210,7 +228,7 @@ do: `add a Title = "name"` this will show the text when hovering
 
 ```
 ---
-
+**[Back to Index](#index)**
 # CSS
 
 Allows the addiction of styles and "beautification" of the HTML bare bones page.
@@ -234,6 +252,7 @@ To connect to HTML:
 - in an external css file, linked to your html via the `<link>` tag\
     exe: `<link rel="stylesheet" href ="style.css">`
 
+**[Back to Index](#index)**
 ## Concept 1: CSS selectors
 
 CSS selectors allow you to select in your html the content to be stylized via the tag containing it.
@@ -271,7 +290,7 @@ a:visited {
     color: aqua;
 }
 ```
-
+**[Back to Index](#index)**
 ## Concept 2: block model
 
 All tags are rendered visually as a "block". This is called the [box model](https://www.w3schools.com/css/css_boxmodel.asp). Each block includes margin, padding border properties.
@@ -395,7 +414,7 @@ body {
     ;
 }
 ```
-[] Add a background image to your body
+[x] Add a background image to your body
 ```CSS
 body {
     max-width: 90%;
@@ -455,8 +474,8 @@ body {
     background-size: contain;
 }
 ```
-
-## CSS selectors (part 2) :
+**[Back to Index](#index)**
+## CSS selectors (part 2)
 
 Elements to be stylized:
 
@@ -664,6 +683,7 @@ li.bad_image {
     padding-right: 30px;
 }
 ```
+**[Back to Index](#index)**
 ## Concept 3: CSS positioning
 ### Understanding the Browser Rendering flow
 
@@ -766,7 +786,7 @@ The flow is the default behavior. You may need an element to exit the position f
 
 `position : static | relative | absolute | fixed ;`
 
-The `position` property allows you to position an element anywhere (via the `top` and `left` properties), from the coordinates of its first parent in `position: relative` or `static`. Experiment via this Pen.
+The `position` property allows you to position an element anywhere (via the `top` and `left` properties), from the coordinates of its first parent in `position: relative` or `static`. [Experiment via this Pen.](https://codepen.io/pixeline/pen/vmzNjw)
 
 #### Exercises :
 
@@ -787,15 +807,733 @@ The `position` property allows you to position an element anywhere (via the `top
 **Going further**
 
 More information on CSS positioning: http://learnlayout.com
-
+**[Back to Index](#index)**
 **Extra**
 
-#### Learning Grid
+### Learning Grid
 source: https://youtu.be/EiNiSFIPIQE?si=AVDyc45lc5WTXS12
 fun tool: https://cssgridgarden.com/
 
-## 3. Web fonts
+Grid works with rows and columns and tracks, like axis
+We need some elements to create a grid for exemple:
 
+```HTML
+<body>
+    <div class="container"></div>
+    <div class="item item-1"></div>
+    <div class="item item-2"></div>
+    <div class="item item-3"></div>
+    <div class="item item-4"></div>
+    <!-- if another item is added it takes a inplicite grid value and puches to a new grid value-->
+</body>
+```
+
+
+```CSS
+.container-1{
+    <!-- start with creating grid and it's axes -->
+    display:grid;
+    grid-template-rows:100px 100px 100px 100px 100px 100px;
+    grid-template-columns:100px 100px 100px 100px 100px 100px;
+    <!-- the exemple above will create a grid pattern of 6 blocks going from 1-2 2-3 3-4 4-5 5-6 6-7 -->
+    <!-- select an item to modify -->
+}
+
+.container-2{
+    display:grid;
+    grid-auto-rows:100px;
+    <!-- this allows all new items to be of a same size when called upon -->
+    grid-auto-flow:column;
+    <!-- this create a new column instead of row, that is the default value -->
+    grid-auto-rows:100px;
+    <!-- as before we can specify the inplicite size -->
+}
+.container-3{
+    display:grid;
+    <!-- for values inside a template we have a special case called fractional value of the available space -->
+
+    grid-template-rows:100px 100px 100px;
+    grid-template-columns: 1fr 1fr 1fr;
+    // here we get 3 blocks with 1/3 of the total space
+    grid-template-columns: 1fr 3fr 1fr;
+    // here it is as if the total block space is 5 and the midle block occupies 3/5 of it
+    // we can mix unit values with no problems: 100px 3fr 1fr
+    // to avoid some items getting to thin when resizing we ca do the minmax() funtion takes 2 arguments: min, max:
+    grid-template-colulns: 100px minmax(100px,3fr) 1fr;
+    // another useful fontion os repeat(), arguments are the number of repeats and value
+    grid-template-rows:repeat(2,100px);
+    //adding gaps in between rows and collumns
+    grid-gap: 1em;
+    // if 2 values is rows columns
+    grid-gap: 1em 3em;
+}
+
+
+.item-1{
+    grid-row: 1 / 3;
+    grid-column: 1 / 5 ;
+    <!-- this allow us to specify the placement of the block with a start / end  -->
+}
+
+.item-2{
+    grid-row: span 2;
+    grid-column: span 2;
+    <!-- span number; is also an option as it fills up the available space from where the block is to the number, it does not take into account the start or end of item-->
+}
+.item-3{
+    grid-area: row-start col-start row-end col-end;
+    <!-- all separated by / : 3 / 2 / 7 / 7 = 3/1/-1/-1-->
+    <!-- we also have negative numbers starting from the bottom right coner of the grid -->
+    <!-- we can overlap areas with the area and decide the placement-->
+    z-index:1;
+    <!-- this places it forward -->
+}
+
+    .container-4{
+        display:grid;
+        grid-template-rows:100px 300px 100px;
+        grid-template-columns: 1fr 3fr;
+    
+        // another way to order elements is to do a meta-grid of sorts, using single quotes
+        grid-template-areas:
+            'header header'
+            'main aside'
+            'footer footer'
+            // here we have the representation that will be shown, 3 rows and 2 columns
+            // now we need to assign the values to the items by using grid-area
+    }
+
+.item-1{
+    grid.area:header;
+}
+.item-2{
+    grid.area:main;
+}
+.item-3{
+    grid.area:aside;
+}
+.item-4{
+    grid.area:footer;
+}
+
+// to finish we have other background properties
+.container-5{
+    display:grid;
+    grid-template-rows:repeat(4,100px);
+    grid-template-columns:repeat(4,1fr);
+    // by default is stretch, we can have: start, end, baseline, center
+    justify-items: ; // manipulates items in the row axis
+    align-items: ; // manipulates items in the column asix
+}
+// same idea works for individual items
+.item-1{
+    justify-self:center; // for row movement
+    align-self:stretch; // for column movement
+}
+//  we can work with containers of different sizes than the frid itself:
+.container-5{
+    display:grid;
+    height:600px;
+    grid-template-rows:repeat(2,100px);
+    grid-template-columns:repeat(2,100px);
+    justify-content:start(end,center,stretch,baseline, space-between,space-around, space-evenly); // for row movements
+    align-content:start; // for column movements
+}
+// for a responsive grid:
+.container-5{
+    display:grid;
+    grid-template-rows:repeat(4,100px);
+    grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+    // the auto-fit will allow the items to wrap around when resizing the window
+}
+
+
+
+```
+**[Back to Index](#index)**
+## 3. Web fonts
+By default, the browser uses the fonts installed on the client's computer. However, you can use specific fonts: the webfonts.
+
+#### Exercises :
+
+[x] Visit Google Webfonts: changes the font of your document to this one: Open Sans.
+```HTML
+<!-- I added the link files provided by google fonts inside the head -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+<!-- the name I can call for font-family is after the family= -->
+```
+```CSS
+/* for here I can use it as a class call by replacing the following */
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 800
+
+.open-sans-<uniquifier> {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+
+/* or I can add inside an element such as body the following */
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+/* making sure to change the weight that I want for the font in quetion */
+}
+```
+**[Back to Index](#index)**
 ## 4. Useful tools
 
-## 5. Exercises to finish this sprint
+Reset.css et normalize.css allows us to put every browser in a same plane clean state where my modifications are not affected by the default parameters
+
+Removes the default css used by browsers ([reset.css(https://www.alsacreations.com/astuce/lire/36-reset-css.html)]), 
+```CSS
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Ceci est un exemple de pratique non recommandée,
+   NE PAS UTILISER dans vos projets! */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none; 
+}
+/* other version */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+```
+
+or leaves on a normalized basis ([normalize.css(https://github.com/necolas/normalize.css)])
+
+```CSS
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+```
+
+
+Check that your HTML is valid via the [w3c validator](https://validator.w3.org/)
+Check that your HTML allows good organic SEO, via other tools like the [Google Lighthouse Test](https://pagespeed.web.dev/)
+Install [Emmet(https://emmet.io/)] in your code editor.
+
+**[Back to Index](#index)**
+## 5 Exercises to finish this sprint
+
+Reproduce as accurately as possible the following layouts:
+[] homepage of turlututu.com
+
+[] CodeCollab homepage Create a repository for each project. Do not forget the description, the URL of the GitHub Page and the readme!
+
+**[Back to Index](#index)**
+## Other usefull things
+
+Host a website on GitHub pages
+Need to have:
+- index.hmtl
+- styles.css
+- other.html
+
+github -> create a repos: 
+- for personal website: LuanPM84.github.io
+- other: tim-berners-lee
+
+Once files inside repos, go to **settings**, **Pages**, **Source**, choose main branch and save
+
+If all is working properly you will have a link like the following:
+
+> https://user_name.github.io/repos_name/
+
+*extra
+
+I can remove the .html extension from the href on index.html, for a better presentation on github url. Same for the other linked pages I can do ./ , it will take me to the index by default. It works on Gihub, might not on local repository.
+**[Back to Index](#index)**
+### Bro Code videos on HTML and CSS, to help with general flow of things
+
+start here: [Learn HTML headers & footers in 5 minutes! 🤯](https://youtu.be/JNFdCgmMkPk?si=ZPYg_xmfe_mG8WTf)
+
+#### Get started with CSS in 8 minutes! 🎨
+
+    - for id="name" we use #name on css styles.css
+    - for class="name" we use .name on css styles.css
+
+#### Learn CSS colors in 4 minutes! 🖌️
+
+    - backgound-color:;
+    - color:; // font color
+        - named colors: red,blue,slategray, tomato
+        - rgb(red,gree,blue) 0 -> 255 also accepts 4th value for opacity rgb(_,_,_,opacity)
+        - hexadecimal: #FFFFFF six values, from 0 ->8 and A -> F
+        hsl(hue,saturation,lightness)
+####  Learn CSS fonts in 7 minutes! 🔤
+
+    - font-family: "font_name", "font_name_2";
+        backup fonts if brownser can't display
+    - font-size: default 16px;
+        1 to inf; 1em is normal, 1.5em is 50% more
+    - font-weight:normal;
+        bold, number if accepts
+    - font-style: italic;
+
+    - google fonts: fonts.google.com
+        link the fonts on the HTML file, Head element
+        CSS now can use the name of font-family
+        Can also download the fonts and link it to the HTML file the type .ttf
+        On stylesheet need to create a rule:
+            - @font-face{
+                src:url(file_name within fonts folser; fonts/font_name.ttf)
+                font-family: new_font_name
+            }
+        For every font make a new rule
+
+#### Learn CSS borders in 4 minutes! 🖼
+
+    - border-style:;
+        - solid, dashed,dotted,double,groove, ridge, inset, outset, none
+    - border-width: 1px default;
+        - 1px to inf px;
+    - border-color:;
+    - border-radius:;
+        - 0 to 20 or more, rounds up the corners
+    - border:width style color ;
+    - border-bottom: width style color;
+    - border-top: //;
+    - border-left://;
+    - border-right://;
+
+#### Learn CSS shadows in 3 minutes! 👥
+
+    - text-shadow:horizontal_offset vertical_offset blur(optional) color(optional), new_shadow_arguments;
+    - for box-shadows:
+        - box-shadow:horizontal_offset vertical_offset blur(optional) color(optional);
+
+#### Learn CSS margins in 5 minutes! ↔️
+
+    - margin: number px em, evenly distributed;
+    - margin-top/left/right/bottom:;
+    - margin-top/left/right/bottom:auto will fill up the given space;
+
+#### Learn CSS float in 4 minutes! 🎈
+
+    - float allows other elements to float around it
+    - float:left;
+        image or block, will float to left side and all other elements wrap around
+        left,right
+    for the body element we can add:
+    - display:float-root;
+        this will allow elements to not overflow when floating
+
+#### Learn CSS overflow in 3 minutes! 🌊
+
+    
+#### 
+#### 
+####
+
+**[Back to Index](#index)**
