@@ -1531,9 +1531,59 @@ start here: [Learn HTML headers & footers in 5 minutes! 🤯](https://youtu.be/J
 
 #### Learn CSS overflow in 3 minutes! 🌊
 
+    -overflow: when content does not fit in the parent element
+        - visible: by defautl, no change it allows overflow
+        - hidden: it hides the content overflown
+        - clip: hides the content
+            - overflow-clip-margin: _px;
+            on how much the overflown content is shown
+        - scroll: the box will have a scroll bar always visible
+        - auto: we will have a scroll bar only visible when overflown
     
-#### 
-#### 
+#### Learn CSS display property in 4 minutes! 🧱
+
+    - display: how an element is displayed
+        - block-level: starts on a new-line, take up full width available (h1,div,p,form,header,footer)
+            - it accepts change in height and width
+        - inline: do not start on a new line, width is limited to what is needed (span,a,img)
+            - it does not accept changes in height and width
+        - inline-block: like a block but stays inline and accepts changes. Allows text be inline with the block
+        - none : it disables them
+        -visibility: 
+            hidden: it still takes the place
+            none: it gets rid of it
+
+#### Learn CSS height and width in 6 minutes! 📏
+
+    - height:
+        - auto by default
+        - 100 px, _px
+        - 100vh; takes all available space
+    - width
+        - auto by default, fills up space
+        - 100px, _px
+    - box-sizing: border-box; it allows elements to be inline, overlaps padding; generally in the * {}
+    - max-width: 25%; _%
+    - min-width: 75%; _%
+    - max-height: ; _%
+    - min-height: ; _%
+
+#### Learn CSS positions in 6 minutes! 🎯
+
+    -position:
+        - relative: relative to where is normally
+        - fixed: relative to a view point 
+        - absolute:
+        - sticky:
+        - static: 
+####
+####
+####
+####
+####
+####
+####
+####
 ####
 
 **[Back to Index](#index)**
