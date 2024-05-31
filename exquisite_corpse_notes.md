@@ -37,6 +37,8 @@ Markdown as possible)
 
 [x] invite the other members of the group as contributors
 
+    In settings > Collaborators > add > use the user_name
+
 #### Contributions
 
 [x] check a repository where you have been invited
@@ -64,27 +66,31 @@ A good idea is to do a `git pull` to check if any new modifications were made\
 `git merge Patrick`\
 [x] push the branch development\
 `git push`\
-[] do this for all members of the group
+[x] do this for all members of the group
 ```bash
-git pus cartalano
-git push anthosaxe
-git push fabricetchounkeu
-git push KarlVand
-git push Mus1shi
+https://github.com/cartalano/exquisite_corpse
+git push # cartalano
+https://github.com/anthosaxe/Exquisite-corpse
+git push # anthosaxe
+https://github.com/fabricetchounkeu/fab_story
+git push # fabricetchounkeu
+https://github.com/KarlVand/Exquisit_Corpse
+git push # KarlVand
+https://github.com/Mus1shi/exquisite-corpse
+git push # Mus1shi
 ```
-
 
 #### Versioning
 
-[] go back to your repository when all your colleagues are done
-[] merge development with the branch master
-[] make a tag of master called version-1
+[] go back to your repository when all your colleagues are done\
+[] merge development with the branch master\
+[] make a tag of master called version-1\
 
 #### Correction
 
-[] create a new branch corrections from master
-[] correct all misspellings (if there are none add the mention perfect)
-[] commit/push
-[] merge with master
-[] go to the branch development
-[] update the branch development by merging with corrections
+[] create a new branch corrections from master\
+[] correct all misspellings (if there are none add the mention perfect)\
+[] commit/push\
+[] merge with master\
+[] go to the branch development\
+[] update the branch development by merging with corrections\
