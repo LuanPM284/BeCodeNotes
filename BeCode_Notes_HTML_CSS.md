@@ -295,7 +295,7 @@ a:visited {
 
 All tags are rendered visually as a "block". This is called the [box model](https://www.w3schools.com/css/css_boxmodel.asp). Each block includes margin, padding border properties.
 
-![The bloc](css-block.png)
+![The block](css-block.png)
 
 We can control the dimension and spacing of this block:
 - `width`/`heigth`
@@ -948,8 +948,210 @@ We need some elements to create a grid for exemple:
 }
 
 
+```
+#### Practice with https://cssgridgarden.com/
+
+Welcome to Grid Garden, where you write CSS code to grow your carrot garden! Water only the areas that have carrots by using the `grid-column-start` property.\
+For example, `grid-column-start: 3`; will water the area starting at the 3rd vertical grid line, which is another way of saying the 3rd vertical border from the left in the grid.
+```CSS
+/* creates a grid that is 5x5 each block taking 20% of space, note that we count starting on 1, so we have the blocks:
+1-2 2-3 3-4 4-5 5-6 so a total of 5 blocks, 6 placements
+*/
+#garden {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grsid-template-rows: 20% 20% 20% 20% 20%;
+}
+/* the following moved the block, water, to the third place in the grid */
+#water{
+    grid-column-start:3
+}
+```
+
+When `grid-column-start` is used alone, the grid item by default will span exactly one column. However, you can extend the item across multiple columns by adding the `grid-column-end` property.
+
+Using `grid-column-end`, water all of your carrots while avoiding the dirt. We don't want to waste any water! Note that the carrots start at the 1st vertical grid line and end at the 4th.
+```CSS
+#garden {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+/* notice here we moved 3 blocks so we go from 1 to 4 */
+#water {
+    grid-column-start: 1;
+    grid-column-end:4
+}
+/* its omni-directional, meaning I can go front to back and back to front */
+#water {
+    grid-column-start: 5;
+    grid-column-end:2;
+}
+/* negative numbers are the same fot the positive ones but on the opposite direction */
+#water {
+    grid-column-start: 1;
+    grid-column-end:-2
+}
 
 ```
+Instead of defining a grid item based on the start and end positions of the grid lines, you can define it based on your desired column width using the `span` keyword. Keep in mind that `span` only works with positive values.
+
+For example, water these carrots with the rule `grid-column-end: span 2;`.
+
+```CSS
+/* here we will span the number of blocks */
+#water {
+    grid-column-start: 2;
+    grid-column-end:span 2;
+}
+/* same idea as before, we can go backwards */
+#water {
+grid-column-start:span 3;
+  grid-column-end: 6;
+}
+```
+Typing both `grid-column-start` and `grid-column-end` every time can get tiring. Fortunately, `grid-column` is a shorthand property that can accept both values at once, separated by a slash.
+
+For example, `grid-column: 2 / 4;` will set the grid item to start on the 2nd vertical grid line and end on the 4th grid line.
+
+```CSS
+/* fills up two blocks */
+#water {
+    grid-column:4/6;
+}
+/* span will allow to chose the number of blocks selectes/where it ends  */
+#water {
+    grid-column:span 3/5;
+}
+```
+One of the things that sets CSS grids apart from flexbox is that you can easily position items in two dimensions: columns and rows. `grid-row-start` works much like `grid-column-start` except along the vertical axis.
+
+Use `grid-row-start` to water these carrots.
+
+```CSS
+/* will ocuppy the block 3-4 on the vertical position */
+#water {
+    grid-row-start:3;
+}
+/* same idea from the column, it will fill the blocks */
+#water {
+    grid-row:3/6;
+}
+/* when moving in 2 dimensions */
+#poison {
+    grid-column:2;
+    grid-row:5;
+}
+/* when feeling a bigger area */
+#water {
+    grid-column:2/6;
+    grid-row:1/6;
+}
+```
+If typing out both `grid-column` and `grid-row` is too much for you, there's yet another shorthand for that. `grid-area` accepts four values separated by slashes: `grid-row-start`, `grid-column-start`, `grid-row-end`, followed by `grid-column-end`.
+
+One example of this would be `grid-area: 1 / 1 / 3 / 6;`.
+
+```CSS
+/* grid-area: row_start/column_start / row_end/column_end */
+#water {
+grid-area:1/2/4/6;
+}
+/* here we have two areas, they will overlap but cover different elements */
+#water-1 {
+  grid-area: 1 / 4 / 6 / 5;
+}
+
+#water-2 {
+grid-area:2/3/5/6;
+}
+```
+
+If grid items aren't explicitly placed with `grid-area`, `grid-column`, `grid-row`, etc., they are automatically placed according to their order in the source code. We can override this using the `order` property, which is one of the advantages of grid over table-based layout.
+
+By default, all grid items have an `order` of 0, but this can be set to any positive or negative value, similar to `z-index`.
+
+Right now, the carrots in the second column are being poisoned and the weeds in the last column are being watered. Change the `order` value of the poison to fix this right away!
+```CSS
+/* occupies the lowest of orders */
+.water {
+  order: 0;
+}
+/* any number higher will push the poison to the end, so a higher order. If negative it wimm be put at the start; rows and columns */
+#poison {
+order:1;
+}
+```
+Up to this point, you've had your garden set up as a grid with five columns, each 20% of the full width, and five rows, each 20% of the full height.
+
+This was done with the rules `grid-template-columns: 20% 20% 20% 20% 20%;` and `grid-template-rows: 20% 20% 20% 20% 20%;` Each rule has five values which create five columns, each set to 20% of the overall width of the garden.
+
+But you can set the grid up however you like. `Give grid-template-columns` a new value to water your carrots. You'll want to set the width of the 1st column to be 50%.
+```CSS
+/* the following will allow us to separate the canvas in half with 5 rows taking 20% each of the available space */
+#garden {
+    display: grid;
+    grid-template-columns:50%
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+/* the template allows for several types of units for the size of the boxes */
+#garden {
+    display: grid;
+    grid-template-columns:50%
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+/* the total space is divided between the fratctional parts 1ft 5fr means the space is divided in 6 and each piece takes the sapce given on this case 1/6 and 5/6  since 1fr + 5fr = 6fr*/
+#garden {
+    display: grid;
+    grid-template-columns:1fr 5fr;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}   
+/* this is interesting since the space can be filled with any fraction on the midle, the most import part is to have a 5x5 grid since the rows follow the same pattern  */
+#garden {
+    display: grid;
+    grid-template-columns:50px 3fr 3fr 3fr 50px;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+/* here we create a gap of 50px and fill up the rest, both 0 0 0 50px and this one works. I don't really get why */
+#garden {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows:50px 0 0 0;
+}
+
+#water {
+    grid-column: 1 / 6;
+    grid-row: 5 / 6;
+}
+```
+`grid-template` is a shorthand property that combines `grid-template-rows` and `grid-template-columns`.
+
+For example, `grid-template: 50% 50% / 200px;` will create a grid with two rows that are 50% each, and one column that is 200 pixels wide.
+
+Try using grid-template to water an area that includes the top 60% and left 200 pixels of your garden.
+```CSS
+/* here we create a row of 60% of total space and a columln of 200px */
+#garden {
+    display: grid;
+    grid-template:60% / 200px;
+}
+
+#water {
+    grid-column: 1;
+    grid-row: 1;
+}
+/* this creates something with a 50px gap at the bottom, and 2 columns fractionned */
+#garden {
+  display: grid;
+grid-template:1fr 50px /1fr 4fr;
+}
+
+```
+#### Grid by Fireship
+
+
+
+
 **[Back to Index](#index)**
 ## 3. Web fonts
 By default, the browser uses the fonts installed on the client's computer. However, you can use specific fonts: the webfonts.
@@ -1572,18 +1774,395 @@ start here: [Learn HTML headers & footers in 5 minutes! 🤯](https://youtu.be/J
 
     -position:
         - relative: relative to where is normally
-        - fixed: relative to a view point 
-        - absolute:
-        - sticky:
-        - static: 
-####
-####
-####
-####
-####
-####
-####
-####
-####
+            - top:100px; pushes the element 100px down from the top
+            - left: 100px; pushes the element 100px from the left
+        - fixed: relative to a viewport=browser window
+            - stuck in the top corner
+            - right:0px; fixes the element to the right
+            - bottom: 0px; fixed to the bottom corner
+        - absolute: relative to the nearest ancestor, parent element
+            - top,left,right,bottom
+        - sticky: based on scroll position, scroll bar
+            - stays same place untill we pass 
+        - static: default
+
+#### How to include a CSS background image 🏙️
+
+    - have an image in your html folder
+    -body{
+        background-image:url(image_location);
+        <!-- when big enough it fills up space -->
+        <!-- when small it repeats, unless we say no -->
+        background-repeat:no-repeat;
+        background-position:center;
+        <!-- to scroll the image with the scroolbar -->
+        background-attachement:fixed; it doesn't move
+        <!-- change if it fills up all space -->
+        background-size:cover;
+    }
+    
+#### Learn CSS combinators in 4 minutes! ➕
+
+    - Discribes the relationship between lited selectors
+        "empty space"  descendant
+            all child folowing the parent
+        > child
+            div > p : all p elements inside a div, not grandchild
+        ~ general sibling
+            child of the same big parent but not inside the current selected element
+        + adjacent sibling
+            the next direct sibling of the chosen parent element
+
+#### Learn CSS pseudo-classes in 7 minutes! ☟
+
+    keywords added to a selector, modify a special case of an element
+    element:pseudo_class
+    - :hover: when mouse passes over it changes
+    - :style:
+    - :link: change  a color as exemple
+    - :active: when holding cursor over element
+    - :visited: we can change the behaviour after a link is visited
+    - not(:pseudo_class): reverts the behaviour
+        for exemple, not(:hover) will leave all the same color backgroud( if that is the bahavior) and show normal background when hover
+    - :nth-child(#)
+        # for a number, even, odd, #n for a multiplier of n
+    - if we do a display:none; and chose another element as hover behaviour to have display:block; it will appear from hidden
+
+#### Learn CSS pseudo-elements in 5 minutes! ✔
+
+    - keyword added after a selector that's used to style a pecific parts of an element
+     h1::first-letter
+    - ::first-line
+    - ::first-letter
+    - ::selection
+        we can change the behaviour when we select text with the mouse or keyboard
+    - ::before
+        we can add somethind to before a list item for exemple and emoji:
+        li::before{
+            content:"🧭";
+        }
+    - ::after
+        same idea but after the element
+    - ::marker
+        mark the before a list for exemple and can also cahnge it's color,  content:""; color:"";font-size:;
+
+#### Learn CSS pagination in 8 minutes! 🕮
+
+    
+#### Learn CSS dropdown menus in 6 minutes! 🔻
+
+
+#### How to create a CSS navigation bar in 6 minutes! 🧭
+    HTML ___________________________
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <main>
+            <h3>Subtitle</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi debitis repellendus ipsum voluptates
+                harum, tenetur consequatur, quibusdam atque totam culpa sit. Nihil harum culpa tempore nesciunt odio
+                perspiciatis numquam porro.</p>
+        </main>
+    </nav>
+    CSS ____________________________
+    body {
+        margin: 0px;
+    }
+
+    main {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    nav ul {
+        list-style: none;
+        background-color: rgb(173, 173, 173);
+        padding: 0px;
+        margin: 0px;
+        /* overflow: hidden; if want sideways bar*/
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 15px;
+        display: block;
+        text-align: center;
+    }
+
+    nav a:hover {
+        background-color: rgb(216, 216, 216);
+    }
+
+    /* nav li {
+        float: left;  if want sideways bar
+    } */
+
+#### CSS website layout in 9 minutes! 🗺️
+
+    Semantic tags:
+    - header: introduction content
+    - main: main content (section, aside, article)
+    - article: independent content, can be reposted somewhere else
+    - section: dependent content, not always clear when transposed
+    - aside: side content
+    - footer: closing content
+    CSS _____________________________
+    /* this below allow us to add padding to width % modifications taking in cosideration the extra padding */
+    /* *{
+        box-sizing: border-box;
+    } */
+    body {
+        margin: 0;
+    }
+
+    header {
+        background-color: lightgray;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .navbar {
+        background-color: hsl(0, 0%, 26%);
+        height: 50px;
+    }
+
+    aside {
+        width: 20%;
+        float: left;
+    }
+
+    section {
+        width: 40%;
+        float: left;
+    }
+
+    article {
+        width: 40%;
+        float: left;
+    }
+
+    /* total width 100% */
+    footer {
+        display: block;
+        /* it clears a float */
+        clear: both;
+        background-color: lightgray;
+        text-align: center;
+        padding: 25px;
+    }
+
+    /* the following will take place when width is less than 600px */
+    @media screen and (max-width:600px) {
+
+        aside,
+        section,
+        article {
+            width: 100%;
+        }
+    }
+
+    HTML _______________________________
+
+    <header>
+        <h2>Header</h2>
+    </header>
+    <nav class="navbar">
+    </nav>
+
+    <main>
+        <aside>
+            <h2>This is aside</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro maxime, reprehenderit iste quasi sapiente
+                animi tenetur doloremque quod ratione consequuntur minima culpa ut optio sint, molestias mollitia sequi
+                eaque molestiae?</p>
+        </aside>
+        <section>
+            <h2>This is an section</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro maxime, reprehenderit iste quasi sapiente
+                animi tenetur doloremque quod ratione consequuntur minima culpa ut optio sint, molestias mollitia sequi
+                eaque molestiae?</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro maxime, reprehenderit iste quasi sapiente
+                animi tenetur doloremque quod ratione consequuntur minima culpa ut optio sint, molestias mollitia sequi
+                eaque molestiae?</p>
+        </section>
+        <article>
+            <h2>This is an article</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro maxime, reprehenderit iste quasi sapiente
+                animi tenetur doloremque quod ratione consequuntur minima culpa ut optio sint, molestias mollitia sequi
+                eaque molestiae?</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro maxime, reprehenderit iste quasi sapiente
+                animi tenetur doloremque quod ratione consequuntur minima culpa ut optio sint, molestias mollitia sequi
+                eaque molestiae?</p>
+        </article>
+    </main>
+
+    <footer>
+        <h2>Footer</h2>
+    </footer>
+
+
+#### How to create a CSS image gallery in 5 minutes! 📷
+
+
+#### Learn CSS icons in 8 minutes! 🐤
+
+    source: https://fontawesome.com/icons
+
+    HTML ________________________________________
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bro Code</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/88f05daeb4.js" crossorigin="anonymous"></script>
+    <body>
+        
+        <div class="icons">
+            <a href="">
+                <i class="fa-solid fa-house fa-5x"></i>
+            </a>
+            <a href="https://twitter.com">
+                <i class="fa-brands fa-twitter fa-5x"></i>
+            </a>
+            <a href="https://youtube.com">
+                <i class="fa-brands fa-youtube fa-5x"></i>
+            </a>
+            <a href="https://tiktok.com">
+                <i class="fa-brands fa-tiktok fa-5x"></i>
+            </a>    
+        </div>
+
+    </body>
+    </html>
+
+    CSS ____________________________________
+    .icons{
+        text-align: center;
+    }
+    .icons a{
+        text-decoration: none;
+        margin-right: 20px;
+    }
+    .fa-solid.fa-house.fa-5x{
+        color: hsl(0, 0%, 66%);
+    }
+    .fa-solid.fa-house.fa-5x:hover{
+        color: hsl(0, 0%, 76%);
+    }
+    .fa-brands.fa-twitter.fa-5x{
+        color: hsl(188, 100%, 50%);
+    }
+    .fa-brands.fa-twitter.fa-5x:hover{
+        color: hsl(188, 100%, 60%);
+    }
+    .fa-brands.fa-youtube.fa-5x{
+        color: hsl(0, 100%, 50%);
+    }
+    .fa-brands.fa-youtube.fa-5x:hover{
+        color: hsl(0, 100%, 60%);
+    }
+    .fa-brands.fa-tiktok.fa-5x{
+        color: hsl(0, 0%, 10%);
+    }
+    .fa-brands.fa-tiktok.fa-5x:hover{
+        color: hsl(0, 0%, 30%);
+    }
+
+#### Learn CSS flexbox in 10 minutes! 💪
+
+    CSS_______________________________________
+    .container {
+    display: flex;
+    /* border:90vh; 90 viewport size units, so the size of the browser window */
+    /* changes on the main axes */
+    /* flex-direction: row; default*, column, reserve*/
+    /* justify-content: center;flex-start default, center,space-between, space-around, space-evenly*/
+    /* changes on the cross axis, vertical */
+    /* align-items: center; flex-start default, baseline (align the text),center, */
+    /* flex-wrap: wrap; if not enough space on container, default no-wrap */
+    /* align-content: flex-start; with wrap we can use this*/
+    /* add gaps  */
+    /* column-gap: 1em;
+    row-gap: 1em; */
+
+    }
+
+    .box {
+    width: 150px;
+    height: 150px;
+    background-color: hsl(0, 81%, 60%);
+    font-size: 8em;
+    text-align: center;
+    border-radius: 15px;
+    }
+
+    #box1 {
+    background-color: hsl(10, 80%, 70%);
+    /* align-self: start; default */
+    /* align-self: center; goes center of cross axis */
+    /* order: 1;puts box at the end */
+    /* order:-1; puts it at the beggining */
+    }
+
+    #box2 {
+    background-color: hsl(60, 80%, 70%);
+    }
+
+    #box3 {
+    background-color: hsl(123, 62%, 71%);
+    }
+
+    #box4 {
+    background-color: hsl(212, 80%, 70%);
+    }
+
+HTML__________________________________________
+
+    <div class="container">
+        <div class="box" id="box1">1</div>
+        <div class="box" id="box2">2</div>
+        <div class="box" id="box3">3</div>
+        <div class="box" id="box4">4</div>
+    </div>
+
+
+#### Learn CSS transformations in 9 minutes! 🔄
+
+    CSS______________________________-
+    transform:translateX(value);value: 10px 50px 10% 50% -10 -50 ...
+    transform:translateY(value);
+    transform:translate(valueX, valueY);
+
+    transform: rotateX(180deg) takes degree values
+    transform: rotateY(y_deg)
+    transform: rotateZ(z_deg)
+
+    transform: scaleX(value), 0 to 1 a percentage and more
+    transform: scaleY(value)
+    transform: scale(valueX,valueY)
+
+    transform: skewX(45deg) takes degree values
+    transform: skewY(45deg) 
+    transform: skew(_deg,_deg)
+
+    transform: rotateZ() translate(,) scale(,);
+
+
+#### Learn CSS animations in 15 minutes! 🎬
+
+
 
 **[Back to Index](#index)**
