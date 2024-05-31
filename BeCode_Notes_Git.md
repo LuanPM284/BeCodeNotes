@@ -95,6 +95,12 @@ git commit --amend
 git tag <tag name > <commit>
 # adds tag v1 to commit C1 if tag is v1
 
+git push origin tag <tag_name>
+# pushes a single tag to the remote origin repos
+
+git push --tags
+# pushes all tags to remote
+
 git describe <ref>
 
 # allow us to see the closest tag and the hash corresponding to it's commit
