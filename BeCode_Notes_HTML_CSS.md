@@ -2163,6 +2163,85 @@ HTML__________________________________________
 
 #### Learn CSS animations in 15 minutes! 🎬
 
+### How to Create Navbar in HTML and CSS
 
+[Source](https://www.youtube.com/watch?v=2DVkNvVcQAU)
+
+```HTML
+    <header class="header">
+        <a href="#" class="logo">Logo</a>
+
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Gallery</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+```
+```CSS
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: url(Wavey.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    /* a color */
+    /* background: hsl(0, 80%, 60%); */
+    background: transparent;
+    display: flex;
+    /* because logo outside navbar it gets displaced out front ir */
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 32px;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: whitesmoke;
+    transition: 0.3s;
+}
+
+.navbar a:hover::before {
+    width: 100%;
+
+}
+```
 
 **[Back to Index](#index)**
