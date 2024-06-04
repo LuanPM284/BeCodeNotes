@@ -62,7 +62,7 @@ body::before {
 ```
 
 
-Basic HTML synta
+Basic HTML syntax
 ```HTML
 <!doctype html>
 <html lang="en">
@@ -78,6 +78,7 @@ Basic HTML synta
   </body>
 </html>
 ```
+#### Grid system
 Bootstrap uses 3 levels of grid system:
 - Container
     `<div class="container"></div>`
@@ -102,7 +103,15 @@ Bootstrap uses 3 levels of grid system:
 
     We can say from what size (break-point) it will divide by `row-col-lg-4` for exemple once we get to `lg` size the elements distribute 4 per row.
 
-    We can also add gaps in between the columns, `row row-cols-2 gy-2` this will add a gap of 2 in between rows.
+    We can also add gaps in between the columns, `row row-cols-2 gy-2` this will add a gap of 2 in between rows, it goes from 1 to 5.
+
+    We can always use it for breack-points by writting `gy-lg-5`, add gap of 5 once screen size is lg.
+    Same for the x axis, `gx-2`
+
+    And `g` for a gap in both directions.
+
+    Nesting rows, one inside another. By adding `<div class="row">` inside a `<div class="col">`.
+
 
 - Column
     By default BS is divided in 12 columns system, each row has 12.
@@ -124,5 +133,150 @@ Bootstrap uses 3 levels of grid system:
 
     To offset, or push the columns around e use `offset-number` the number is the space that is displaced
 
+#### Tables
+Exemple code for the modifications:
+```HTML
+    <table>
+        <thead>
+            <tr>
+                <th>first</th>
+                <th>last </th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>kyle</td>
+                <td>cook</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <td>sally</td>
+                <td>thorn</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>jim</td>
+                <td>smith</td>
+                <td>48</td>
+            </tr>
+        </tbody>
+    </table>
+```
 
+We can add the `class="table"` to add BS basic styles to it.
 
+We can add colors, there are 8 themes in BS. They are:
+
+```
+.text-primary => blue
+
+.text-secondary => gray
+
+.text-success => green
+
+.text-danger => red
+
+.text-warning => yellow
+
+.text-info => lightblue
+
+.text-light => lightgray
+
+.text-dark => darkgray
+
+.text-muted => text lightgray
+
+.text-white => white
+```
+
+This colors are accepted on all class types elements, including rows, columns and cells.
+
+We also have `class="table table-striped"` that will create a on/off color throughout the table, on the rows direction, for columns we d `class="table table-striped-columns"`.
+
+Table hover will darker the row that cursor hovers, `class="table table-hover"`. For an always hover style we can use `class="table table-active"` on a row or column.
+
+Add or remove borders by `class="table table-bordered"`, `class="table table-borderless"`
+
+Change sizes with `class="table table-sm"`.
+
+If we have a lot of data, that it doesn't fit on the window we can create a box with slidebars by wraping the whole table on a responsive class, `class="table-responsive"`, we can also say at which screen size it will become the case by addind the break points after `reponsive-lg`=> this is it will become responsive when smaller than lg size.
+
+Fot the `head`,`body` and ` foot` we can add dividers.
+
+#### Forms
+
+Basic structure for an email form:
+```HTML
+    <div class="container">
+        <form action="">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control">
+            <button>Submit</button>
+            </input>
+        </form>
+    </div>
+```
+We will add classes to our `label` and `input`, using the follwing `class="form-label"` and `class="form-control"`
+_
+Controling the `form-control-_`, with `sm` it's a smaller input box and `lg` is a larger one.
+
+For a style of input as plain-text, we can use `class ="form-control-plaintext"`. We can also add other properties, like `readonly`(for no allow modification) and a `value`(will fill up the box with a generix text), even the `desabled`(will stop any input).
+
+If we have as input a colorpicker, `type="color"` we need to add a `class="form-control-color"` so that is becomes a right style.
+
+Same idea for a range input, `type="range" "class="form-range"`
+
+The select input we use `class="form-select"` for a beter style.
+
+Checkboxes we will use `class="form-check-input"`, the label will recieve the `class="form-check-label"` and we can wrap all that into a `<div class="form-chek">"`. We can also transform it into a toogle switch with an extra `form-switch` and we can have them be inline, in case we have several checkboxes.
+
+#### Input groups
+
+It allows us to have multiple inputs in a same row. As an exmple of code:
+```HTML
+    <div class="container">
+        <form action="">
+            <label for="text" class="form-label">Amount</label>
+            <div class="input-group">
+                <div class="input-group-text">$</div>
+                <input type="number" id="text" class="form-control">
+                <div class="input-group-text">.00</div>
+            </div>
+        </form>
+    </div>
+```
+
+#### Floating Labels
+
+An extra, a cool type of animation for your form labels. `Label` must come after the `input` and `input` must have a `placeholder`.
+```HTML
+    <form>
+        <div class="form-floating">
+            <input type="email" id="email" class="form-control" placeholder="Email">
+            <label for="email" class="form-label">Email</label>
+        </div>
+        <button>Submit</button>
+    </form>
+```
+#### Form Validation
+
+A form accepts the `required` statement that will force the user to input something. For BS we have a class that will show if invalid or valid, `classic="is-invalid"` or`classic="is-valid"`.
+
+For an automation we can add into the form tag `novalidate`, a javasript will be necessary.
+```js
+    <script>
+        const form = document.querrySelector('form')
+
+        form.addEventListener('submit', e => {
+            if (!form.checkValidity()) {
+                e.preventDefault()
+            }
+            form.classList.add('was-validated')
+        })
+    </script>
+```
+
+Under label we can add more feedback as `<div class="invalid-feedback">Invalid Email</div>` and `<div class="valid-feedback">Correct Email</div>`
+
+#### Buttons
