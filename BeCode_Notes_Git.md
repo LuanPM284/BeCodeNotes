@@ -82,6 +82,14 @@ git reset
 
 git revert
 # created a new node where changes can are in
+# The following is for reverting to a previous commit, in case of mess ups or change of code
+git add .
+git commit -m "This commit is a mistake"
+git revert HEAD # will create a new commit doing the opposite of the one above
+# Same idea but moving several times
+git revert HEAD~3...HEAD # revert the last three commits
+# Delete old commit and start over
+git reset --hard HEAD~
 
 git cherry-pick <commit1><commit2>...
 # this allow us to pick the commits we want and paste them under main, so as to not do one by one
