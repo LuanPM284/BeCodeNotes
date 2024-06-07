@@ -280,3 +280,12 @@ For an automation we can add into the form tag `novalidate`, a javasript will be
 Under label we can add more feedback as `<div class="invalid-feedback">Invalid Email</div>` and `<div class="valid-feedback">Correct Email</div>`
 
 #### Buttons
+
+For buttons we have several options, the most often used it `btn` and with a color `btn-primary` for a color. Works the same for an outline button with color, `btn-outline-secondary`.
+
+For sizes we always have the `btn-sm btn-lg`.
+
+for a toggle style button I can add inside the element `data-bs-toggle="button"`. Same with `aria-pressed ="True"`, assuming class `active`.
+
+Button groups allow us to assemble buttons on a same line or a bar. `class="btn-group"` or `class="btn-group-vertical"`
+#### 
