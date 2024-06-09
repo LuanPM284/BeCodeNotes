@@ -87,7 +87,7 @@ create internal links
 - [5 Exercices to finish module](#5-exercises-to-finish-this-sprint)
 - [Other usefull things](#other-usefull-things)
     - [Bro code](#bro-code-videos-on-html-and-css-to-help-with-general-flow-of-things)
-
+-[404 page exercice](#404-page-exercice)
 
 ---
 ### Progressive enhancement
@@ -2243,5 +2243,43 @@ body {
 
 }
 ```
+### 404 page exercice
+
+[Source page](https://github.com/becodeorg/Swartz-9/blob/main/1.The-Field/8.Html-CSS/error-404.adoc)
+
+#### Learning objectives
+At the end of this challenge you should be able to:
+
+- write semantic HTML
+
+- understand CSS positioning
+
+#### The mission
+You have to create a new repository called 404-page containing the HTML and CSS required for an error 404 page.
+
+**Instructions**
+[] create the repository
+
+[] write an error 404 page in HTML and CSS
+
+[] try to use as much semantical HTML as possible
+
+[] add a back button that redirects to your Github profile
+
+[] change the position of your content on the page
+
+[] commit/push
+
+[] deploy on a Github page
+
+**Optional**
+add an animation when mousing hover an element
+
+Resources
+[CSS3 animations](https://www.w3schools.com/css/css3_animations.asp)
+
+[animate](https://animate.style/)
+
+[CSS positioning](https://learnlayout.com/position.html)
 
 **[Back to Index](#index)**
